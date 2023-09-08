@@ -1,0 +1,16 @@
+local module = require(game.ReplicatedStorage.modules.placementHandler)
+
+local placement = module.new(
+	4, -- grid size
+	game.ReplicatedStorage.items, -- items folder
+	Enum.KeyCode.R, Enum.KeyCode.X
+	
+)
+
+placement:activate("block", workspace.Base.itemHolder, workspace.Base, true)
+
+local mouse = game.Players.LocalPlayer:GetMouse()
+
+mouse.Button1Up:Connect(function()
+	placement:place(game.ReplicatedStorage:WaitForChild("remotes"):WaitForChild("place"))
+end)
